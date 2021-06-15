@@ -15,7 +15,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        AuthService.login('lukasz.malinowski10@gmail.com', 'qwerty123');
+        // AuthService.login('lukasz.malinowski10@gmail.com', 'qwerty123');
         const user = AuthService.getCurrentUser();
         console.log(user);
         if (user) {
