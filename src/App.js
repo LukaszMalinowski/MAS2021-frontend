@@ -35,9 +35,9 @@ class App extends Component {
         const {currentUser, showUserBoard, showOwnerBoard} = this.state;
 
         return (
-            currentUser ?
-                (<p>LOGGED IN</p>) :
-                (<p>NOT LOGGED IN</p>)
+            <div>
+                <h3>hello :)</h3>
+            </div>
         );
     }
 }
