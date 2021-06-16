@@ -21,7 +21,7 @@ class AuthService {
     }
 
     register(email, firstName, lastName, password, phoneNumber, address) {
-        return axios.post(`${BASE_URL}auth/register`,
+        return axios.post(`${URL_BASE}auth/register`,
             {
                 email,
                 firstName,
