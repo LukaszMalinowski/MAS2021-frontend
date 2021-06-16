@@ -7,21 +7,19 @@ class MainPage extends Component {
     constructor(props) {
         super(props);
 
+        const user = AuthService.getCurrentUser();
+
         this.state = {
-            currentUser: undefined
+            currentUser: user
         }
     }
 
 
-    componentDidMount() {
-        const user = AuthService.getCurrentUser();
-        this.setState(state => state.currentUser = user);
-    }
-
     render() {
-        const {user} = this.state;
+        const {currentUser} = this.state;
 
-        if(!user) {
+        if(!currentUser) {
+            console.log("I AM HERE");
             return <Redirect to="/login"/>
         }
 

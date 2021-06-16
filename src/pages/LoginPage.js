@@ -28,6 +28,8 @@ class LoginPage extends Component {
             return <Redirect to="/main" />
         }
 
+        // AuthService.login("lukasz.malinowski10@gmail.com", "qwerty123");
+
         return (
             <h3>Hello from login:)</h3>
         )
