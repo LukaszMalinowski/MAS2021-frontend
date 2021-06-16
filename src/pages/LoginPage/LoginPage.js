@@ -22,8 +22,6 @@ class LoginPage extends Component {
     setUser = () => {
         const user = AuthService.getCurrentUser();
 
-        console.log("here " + user)
-
         if (user) {
             this.setState({
                 currentUser: user
