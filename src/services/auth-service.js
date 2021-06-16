@@ -22,7 +22,7 @@ class AuthService {
     }
 
     register(email, firstName, lastName, password, phoneNumber, address) {
-        return axios.post(`${BASE_URL}/auth/register`,
+        return axios.post(`${BASE_URL}auth/register`,
             {
                 email,
                 firstName,
@@ -41,7 +41,13 @@ class AuthService {
     }
 
     getCurrentUser() {
-        return jwtDecode(localStorage.getItem('user'));
+        const user = localStorage.getItem('user')
+
+        if(user) {
+            return jwtDecode(localStorage.getItem('user'));
+        }
+
+        return null;
     }
 }
 
