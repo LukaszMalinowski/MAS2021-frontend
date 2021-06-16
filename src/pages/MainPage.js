@@ -18,13 +18,15 @@ class MainPage extends Component {
     render() {
         const {currentUser} = this.state;
 
-        if(!currentUser) {
-            console.log("I AM HERE");
+        if (!currentUser) {
             return <Redirect to="/login"/>
         }
 
         return (
-            <h3>Hello from main:)</h3>
+            <div>
+                <h1>Main page</h1>
+                <p>You are logged in</p>
+            </div>
         )
     }
 }

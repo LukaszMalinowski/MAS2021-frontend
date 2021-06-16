@@ -3,18 +3,17 @@ import BASE_URL from "../constants/BASE_URL";
 import jwtDecode from "jwt-decode";
 
 class AuthService {
-    login(username, password) {
-        return axios.post(`${BASE_URL}auth/login`, {
+    async login(username, password) {
+        return await axios.post(`${BASE_URL}auth/login`, {
             email: username,
             password: password
-        })
-            .then(response => {
-                if (response.data.accessToken) {
-                    localStorage.setItem("user", JSON.stringify(response.data));
-                }
+        }).then(response => {
+            if (response.data.accessToken) {
+                localStorage.setItem("user", JSON.stringify(response.data));
+            }
 
-                return response.data;
-            })
+            return response.data;
+        });
     }
 
     logout() {
@@ -43,7 +42,7 @@ class AuthService {
     getCurrentUser() {
         const user = localStorage.getItem('user')
 
-        if(user) {
+        if (user) {
             return jwtDecode(localStorage.getItem('user'));
         }
 
