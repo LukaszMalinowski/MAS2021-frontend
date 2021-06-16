@@ -1,10 +1,11 @@
 import axios from "axios";
-import BASE_URL from "../constants/BASE_URL";
+
 import jwtDecode from "jwt-decode";
+import URL_BASE from "../constants/URL_BASE";
 
 class AuthService {
     async login(username, password) {
-        return await axios.post(`${BASE_URL}auth/login`, {
+        return await axios.post(`${URL_BASE}auth/login`, {
             email: username,
             password: password
         }).then(response => {
