@@ -51,13 +51,10 @@ class LoginPage extends Component {
     render() {
         const {currentUser, error} = this.state;
 
-        console.log(currentUser);
-
         if (currentUser) {
             return <Redirect to="/main"/>
         }
 
-        // TODO add submitting with enter*
         return (
             <div className="LoginPage">
                 <form>
@@ -84,6 +81,7 @@ class LoginPage extends Component {
                     {error && <div className="LoginPage-error">Username or password incorrect</div>}
                     <div className="row">
                         <Button
+                            variant="contained"
                             className="LoginPage-submit col"
                             color="primary"
                             onClick={this.handleLogin}>
@@ -94,7 +92,6 @@ class LoginPage extends Component {
             </div>
         )
     }
-
 }
 
 export default LoginPage;
