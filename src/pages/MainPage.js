@@ -25,8 +25,6 @@ class MainPage extends Component {
     render() {
         const {currentUser} = this.state;
 
-        console.log(currentUser)
-
         if (!currentUser) {
             return <Redirect to="/login"/>
         }
