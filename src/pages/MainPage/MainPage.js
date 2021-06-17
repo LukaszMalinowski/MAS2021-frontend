@@ -42,69 +42,96 @@ class MainPage extends Component {
 
         let navbar;
 
-        navbar = (
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography
-                        variant="h6">
-                        {currentUser.name}
-                    </Typography>
-                    <Button
-                        color="inherit"
-                        variant="outlined"
-                        style={buttonMarin}>
-                        Your cars
-                    </Button>
-                    <Button
-                        color="inherit"
-                        variant="outlined"
-                        style={buttonMarin}>
-                        Add car
-                    </Button>
-                    <Button
-                        color="inherit"
-                        variant="outlined"
-                        style={buttonMarin}>
-                        Register visit
-                    </Button>
-                    <Button
-                        color="inherit"
-                        variant="outlined"
-                        style={buttonMarin}>
-                        Repair history
-                    </Button>
-                    <Button
-                        color="inherit"
-                        variant="outlined"
-                        style={buttonMarin}>
-                        Available garages
-                    </Button>
-                    <Button
-                        color="inherit"
-                        variant="outlined"
-                        style={buttonMarin}>
-                        Available garages
-                    </Button>
-                    <Button
-                        color="inherit"
-                        variant="text"
-                        style={logoutStyle}>
-                        Logout
-                    </Button>
+        if (currentUser.role === "ROLE_USER") {
+            navbar = (
+                <AppBar position="fixed">
+                    <Toolbar>
+                        <Typography
+                            variant="h6">
+                            {currentUser.name}
+                        </Typography>
+                        <Button
+                            color="inherit"
+                            variant="outlined"
+                            style={buttonMarin}>
+                            Your cars
+                        </Button>
+                        <Button
+                            color="inherit"
+                            variant="outlined"
+                            style={buttonMarin}>
+                            Add car
+                        </Button>
+                        <Button
+                            color="inherit"
+                            variant="outlined"
+                            style={buttonMarin}>
+                            Register visit
+                        </Button>
+                        <Button
+                            color="inherit"
+                            variant="outlined"
+                            style={buttonMarin}>
+                            Repair history
+                        </Button>
+                        <Button
+                            color="inherit"
+                            variant="outlined"
+                            style={buttonMarin}>
+                            Available garages
+                        </Button>
+                        <Button
+                            color="inherit"
+                            variant="outlined"
+                            style={buttonMarin}>
+                            Available garages
+                        </Button>
+                        <Button
+                            color="inherit"
+                            variant="text"
+                            style={logoutStyle}
+                            onClick={this.handleLogout}>
+                            Logout
+                        </Button>
+                    </Toolbar>
+                </AppBar>
+            )
+        } else {
+            navbar = (
+                <AppBar position="fixed">
+                    <Toolbar>
+                        <Typography
+                            variant="h6">
+                            {currentUser.name}
+                        </Typography>
+                        <Button
+                            color="inherit"
+                            variant="outlined"
+                            style={buttonMarin}>
+                            All repairs
+                        </Button>
+                        <Button
+                            color="inherit"
+                            variant="outlined"
+                            style={buttonMarin}>
+                            Manage garage
+                        </Button>
+                        <Button
+                            color="inherit"
+                            variant="text"
+                            style={logoutStyle}
+                            onClick={this.handleLogout}>
+                            Logout
+                        </Button>
+                    </Toolbar>
+                </AppBar>
+            )
+        }
 
-                </Toolbar>
-            </AppBar>
-        )
 
         return (
             <div>
                 {navbar}
-                <h1>Main page</h1>
-                <p>You are logged in</p>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleLogout}>Logout</Button>
             </div>
         )
     }

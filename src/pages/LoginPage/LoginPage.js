@@ -33,6 +33,12 @@ class LoginPage extends Component {
         this.setState({[evt.target.id]: evt.target.value})
     }
 
+    handleCheckIfEnter = evt => {
+        if (evt.key === "Enter") {
+            this.handleLogin();
+        }
+    }
+
     handleLogin = async () => {
         const {email, password} = this.state;
 
@@ -63,6 +69,7 @@ class LoginPage extends Component {
                             label="Email"
                             error={error}
                             onChange={this.handleChange}
+                            onKeyPress={this.handleCheckIfEnter}
                         />
                     </div>
 
@@ -74,6 +81,7 @@ class LoginPage extends Component {
                             error={error}
                             type="password"
                             onChange={this.handleChange}
+                            onKeyPress={this.handleCheckIfEnter}
                         />
                     </div>
                     {error && <div className="LoginPage-error">Username or password incorrect</div>}
