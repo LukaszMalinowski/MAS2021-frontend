@@ -12,7 +12,7 @@ class App extends Component {
                     <Redirect to="/login"/>
                 </Route>
                 <Route exact path="/login" component={() => <LoginPage />}/>
-                <Route exact path="/main" component={MainPage}/>
+                <Route path="/main" component={MainPage}/>
                 <Route exact path="/registration" component={RegistrationPage}/>
             </div>
         );

@@ -1,6 +1,7 @@
 import {Component} from "react";
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 
 const buttonMarin = {
     marginLeft: '20px'
@@ -17,7 +18,6 @@ class NavigationBar extends Component {
     render() {
         const {user, logout} = this.props;
 
-
         return (
             <AppBar position="fixed">
                 <Toolbar>
@@ -30,56 +30,65 @@ class NavigationBar extends Component {
                             <Button
                                 color="inherit"
                                 variant="outlined"
-                                style={buttonMarin}>
+                                style={buttonMarin}
+                                component={Link}
+                                to="/main/myCars"
+                            >
                                 Your cars
                             </Button>
                             <Button
                                 color="inherit"
                                 variant="outlined"
-                                style={buttonMarin}>
+                                style={buttonMarin}
+                                component={Link}
+                                to="/main/addCar">
                                 Add car
                             </Button>
                             <Button
                                 color="inherit"
                                 variant="outlined"
-                                style={buttonMarin}>
+                                style={buttonMarin}
+                                component={Link}
+                                to="/main/registerVisit">
                                 Register visit
                             </Button>
                             <Button
                                 color="inherit"
                                 variant="outlined"
-                                style={buttonMarin}>
+                                style={buttonMarin}
+                                component={Link}
+                                to="/main/repairHistory">
                                 Repair history
                             </Button>
                             <Button
                                 color="inherit"
                                 variant="outlined"
-                                style={buttonMarin}>
+                                style={buttonMarin}
+                                component={Link}
+                                to="/main/availableGarages">
                                 Available garages
+                            </Button>
+                        </div>)
+                        :
+                        (<div>
+                            <Button
+                                color="inherit"
+                                variant="outlined"
+                                style={buttonMarin}
+                                component={Link}
+                                to="/main/allRepairs"
+                            >
+                                All repairs
                             </Button>
                             <Button
                                 color="inherit"
                                 variant="outlined"
-                                style={buttonMarin}>
-                                Available garages
+                                style={buttonMarin}
+                                component={Link}
+                                to="/main/manageGarage">
+                                Manage garage
                             </Button>
-                        </div>) :
-                        (
-                            <div>
-                                <Button
-                                    color="inherit"
-                                    variant="outlined"
-                                    style={buttonMarin}>
-                                    All repairs
-                                </Button>
-                                <Button
-                                    color="inherit"
-                                    variant="outlined"
-                                    style={buttonMarin}>
-                                    Manage garage
-                                </Button>
-                            </div>
-                        )
+                        </div>)
                     }
                     <Button
                         color="inherit"
