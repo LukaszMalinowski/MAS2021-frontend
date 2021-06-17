@@ -1,7 +1,7 @@
 import {Component} from "react";
 import { Route, Redirect} from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/MainPage/MainPage";
 import RegistrationPage from "./pages/RegistrationPage";
 
 class App extends Component {
