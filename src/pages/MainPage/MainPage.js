@@ -1,8 +1,10 @@
 import {Component} from "react";
 import AuthService from "../../services/auth-service"
-import {Redirect} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import "./MainPage.css"
-import NavigationBar from "../../components/NavigationBar";
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import CarList from "../../components/CarList";
+import CarAdder from "../../components/CarAdder/CarAdder";
 
 class MainPage extends Component {
 
@@ -32,6 +34,8 @@ class MainPage extends Component {
         return (
             <div>
                 <NavigationBar user={currentUser} logout={this.handleLogout}/>
+                <Route path="/main/myCars" component={CarList}/>
+                <Route path="/main/addCar" component={CarAdder}/>
             </div>
         )
     }

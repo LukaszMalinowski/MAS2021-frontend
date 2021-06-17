@@ -2,6 +2,7 @@ import {Component} from "react";
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
+import "./NavigationBar.css"
 
 const buttonMarin = {
     marginLeft: '20px'
@@ -12,6 +13,10 @@ const logoutStyle = {
     marginRight: '20px'
 };
 
+const appBarStyle = {
+    marginBottom: '25px'
+};
+
 class NavigationBar extends Component {
 
 
@@ -19,8 +24,9 @@ class NavigationBar extends Component {
         const {user, logout} = this.props;
 
         return (
-            <AppBar position="fixed">
-                <Toolbar>
+            <AppBar position="sticky"
+                    style={appBarStyle}>
+                <Toolbar className="NavigationBar">
                     <Typography
                         variant="h6">
                         {user.name}
@@ -101,7 +107,6 @@ class NavigationBar extends Component {
             </AppBar>
         );
     }
-
 }
 
 export default NavigationBar;
