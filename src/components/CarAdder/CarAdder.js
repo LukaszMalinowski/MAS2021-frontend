@@ -49,7 +49,7 @@ class CarAdder extends Component {
 
     render() {
         if(this.state.added) {
-            return <Typography className="CarAdder-Added" variant="h3">User Added</Typography>
+            return <Typography className="CarAdder-Added" variant="h3">Car added</Typography>
         }
 
         return (
