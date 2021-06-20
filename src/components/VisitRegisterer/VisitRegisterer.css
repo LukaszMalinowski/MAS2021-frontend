@@ -1,0 +1,19 @@
+.VisitRegisterer {
+    width: 30%;
+    text-align: center;
+    margin: auto;
+}
+
+.VisitRegisterer-Checkbox {
+
+}
+
+.VisitRegisterer-Registered {
+    color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
