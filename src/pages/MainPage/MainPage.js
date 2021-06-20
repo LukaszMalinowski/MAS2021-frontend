@@ -3,8 +3,9 @@ import AuthService from "../../services/auth-service"
 import {Redirect, Route} from "react-router-dom";
 import "./MainPage.css"
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import CarList from "../../components/CarList";
+import CarList from "../../components/CarList/CarList";
 import CarAdder from "../../components/CarAdder/CarAdder";
+import VisitRegisterer from "../../components/VisitRegisterer/VisitRegiterer";
 
 class MainPage extends Component {
 
@@ -36,6 +37,7 @@ class MainPage extends Component {
                 <NavigationBar user={currentUser} logout={this.handleLogout}/>
                 <Route path="/main/myCars" component={CarList}/>
                 <Route path="/main/addCar" component={CarAdder}/>
+                <Route path="/main/registerVisit" component={VisitRegisterer} />
             </div>
         )
     }

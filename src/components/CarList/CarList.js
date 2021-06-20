@@ -1,6 +1,6 @@
 import {Component} from "react";
-import AuthService from "../services/auth-service";
-import CarsService from "../services/cars-service";
+import AuthService from "../../services/auth-service";
+import CarsService from "../../services/cars-service";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 
 
