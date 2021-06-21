@@ -20,6 +20,14 @@ class GarageService {
             .then(response => response.data);
     }
 
+    fetchAllGarageRepairs(garageId) {
+        return axios.get(`${BASE_URL}garages/${garageId}/repairs`,
+            {
+                headers: getAuthHeader()
+            })
+            .then(response => response.data)
+    }
+
 }
 
 export default new GarageService();

@@ -3,6 +3,7 @@ import {Button, Form, FormLabel} from "react-bootstrap";
 import AuthService from "../../services/auth-service";
 import CarsService from "../../services/cars-service";
 import GarageService from "../../services/garage-service";
+import RepairService from "../../services/repair-service"
 import "./VisitRegisterer.css"
 import {Checkbox} from "@material-ui/core";
 
@@ -29,6 +30,26 @@ class VisitRegisterer extends Component {
 
     handleSubmit = evt => {
         evt.preventDefault();
+
+        const state = this.state;
+
+        const registerRequest = {
+            clientId: state.currentUser.id,
+            carId: state.carId,
+            garageId: state.garageId,
+            visitDate: state.visitDate,
+            isDoorToDoor: state.isDoorToDoor,
+            invoiceNeeded: state.invoiceNeeded,
+            description: state.description
+        }
+
+        this.registerVisit(registerRequest);
+    }
+
+    registerVisit = registerRequest => {
+        RepairService.registerVisit(registerRequest)
+            .then(() => console.log("Success"))
+            .catch(() => console.log("Failure"))
     }
 
     componentDidMount() {
@@ -71,14 +92,12 @@ class VisitRegisterer extends Component {
     render() {
         const {cars, garages, dates} = this.state;
 
-        console.log(this.state);
-
         return (
             <Form className="VisitRegisterer" onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <FormLabel>Car</FormLabel>
                     <Form.Control as="select" id="carId" onChange={this.handleChange}>
-                        {cars.map(car => <option key={car.id}>{car.mark} {car.model}</option>)}
+                        {cars.map(car => <option value={car.id} key={car.id}>{car.mark} {car.model}</option>)}
                     </Form.Control>
                 </Form.Group>
                 <Form.Group>
