@@ -2,6 +2,7 @@ import {Component} from "react";
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import AuthService from "../../services/auth-service";
 import GarageService from "../../services/garage-service";
+import RepairService from "../../services/repair-service";
 
 class VisitManager extends Component {
 
@@ -17,7 +18,14 @@ class VisitManager extends Component {
     }
 
     completeRepair = repair => {
-        console.log(repair);
+        RepairService.completeVisit(repair.repairId)
+            .then(() => {
+                const repairs = this.state.repairs;
+                const filtered = repairs.filter(value => value.repairId !== repair.repairId);
+
+                this.setState({repairs: filtered});
+            })
+            .catch(err => console.log(err));
     }
 
     componentDidMount() {

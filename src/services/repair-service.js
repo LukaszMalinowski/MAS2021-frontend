@@ -12,6 +12,13 @@ class RepairService {
             .then(response => response.status);
     }
 
+    completeVisit(repairId) {
+        return axios.post(`${URL_BASE}repairs/${repairId}`, {},
+            {
+                headers: getAuthHeader()
+            })
+            .then(response => response.status);
+    }
 }
 
 export default new RepairService();

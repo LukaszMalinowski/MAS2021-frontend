@@ -27,7 +27,6 @@ class GarageService {
             })
             .then(response => response.data)
     }
-
 }
 
 export default new GarageService();
