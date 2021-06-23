@@ -5,7 +5,7 @@ import CarsService from "../../services/cars-service";
 import GarageService from "../../services/garage-service";
 import RepairService from "../../services/repair-service"
 import "./VisitRegisterer.css"
-import {Checkbox} from "@material-ui/core";
+import {Checkbox, Typography} from "@material-ui/core";
 
 class VisitRegisterer extends Component {
 
@@ -24,7 +24,9 @@ class VisitRegisterer extends Component {
             garageId: null,
             invoiceNeeded: false,
             isDoorToDoor: false,
-            description: null
+            description: null,
+            registered: false,
+            error: false
         }
     }
 
@@ -47,10 +49,9 @@ class VisitRegisterer extends Component {
     }
 
     registerVisit = registerRequest => {
-        //TODO handle success and failure
         RepairService.registerVisit(registerRequest)
-            .then(() => console.log("Success"))
-            .catch(() => console.log("Failure"))
+            .then(() => this.setState({added: true}))
+            .catch(() => this.setState({error: true}))
     }
 
     componentDidMount() {
@@ -91,7 +92,11 @@ class VisitRegisterer extends Component {
     }
 
     render() {
-        const {cars, garages, dates} = this.state;
+        const {cars, garages, dates, added, error} = this.state;
+
+        if(added) {
+            return <Typography className="VisitRegisterer-Registered" variant="h3">Visit registered!</Typography>
+        }
 
         return (
             <Form className="VisitRegisterer" onSubmit={this.handleSubmit}>
@@ -126,6 +131,7 @@ class VisitRegisterer extends Component {
                     <Form.Control id="description" as="textarea" onChange={this.handleChange}/>
                 </Form.Group>
                 <Button style={{marginTop: '20px'}} variant="primary" type="submit">Register visit</Button>
+                {error && <Typography variant="h6" color="secondary">An error occurred. Try again</Typography>}
             </Form>
         );
     }
