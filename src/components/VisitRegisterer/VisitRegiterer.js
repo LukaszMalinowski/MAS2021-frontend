@@ -47,6 +47,7 @@ class VisitRegisterer extends Component {
     }
 
     registerVisit = registerRequest => {
+        //TODO handle success and failure
         RepairService.registerVisit(registerRequest)
             .then(() => console.log("Success"))
             .catch(() => console.log("Failure"))

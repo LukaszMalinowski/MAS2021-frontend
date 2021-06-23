@@ -13,7 +13,7 @@ class CarList extends Component {
 
         this.state = {
             currentUser: user,
-            cars: undefined
+            cars: []
         }
     }
 
