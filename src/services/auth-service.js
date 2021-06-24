@@ -20,22 +20,21 @@ class AuthService {
         localStorage.removeItem("user");
     }
 
-    register(email, firstName, lastName, password, phoneNumber, address) {
-        return axios.post(`${URL_BASE}auth/register`,
-            {
-                email,
-                firstName,
-                lastName,
-                password,
-                phoneNumber,
-                address
-            })
+    register(user) {
+        return axios.post(`${URL_BASE}auth/register`, {
+            password: user.password,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            address: user.address
+        })
             .then(response => {
                 if (response.data.accessToken) {
                     localStorage.setItem("user", JSON.stringify(response.data));
                 }
 
-                return response.data;
+                return response.status;
             })
     }
 
