@@ -47,8 +47,6 @@ class RepairHistoryList extends Component {
     render() {
         const repairs = this.state.repairs;
 
-        console.log(repairs);
-
         return (
             <TableContainer>
                 <Table>
