@@ -8,6 +8,7 @@ import CarAdder from "../../components/CarAdder/CarAdder";
 import VisitRegisterer from "../../components/VisitRegisterer/VisitRegiterer";
 import VisitManager from "../../components/VisitManager/VisitManager";
 import GarageList from "../../components/GarageList/GarageList";
+import RepairHistoryList from "../../components/RepairHistoryList/RepairHistoryList";
 
 class MainPage extends Component {
 
@@ -39,9 +40,10 @@ class MainPage extends Component {
                 <NavigationBar user={currentUser} logout={this.handleLogout}/>
                 <Route path="/main/myCars" component={CarList}/>
                 <Route path="/main/addCar" component={CarAdder}/>
-                <Route path="/main/registerVisit" component={VisitRegisterer} />
+                <Route path="/main/registerVisit" component={VisitRegisterer}/>
                 <Route path="/main/allRepairs" component={VisitManager}/>
                 <Route path="/main/availableGarages" component={GarageList}/>
+                <Route path="/main/repairHistory" component={RepairHistoryList}/>
             </div>
         )
     }

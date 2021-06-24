@@ -19,6 +19,13 @@ class RepairService {
             })
             .then(response => response.status);
     }
+
+    getAllVisits(userId) {
+        return axios.get(`${URL_BASE}users/${userId}/repairs`, {
+            headers: getAuthHeader()
+        })
+            .then(response => response.data);
+    }
 }
 
 export default new RepairService();
