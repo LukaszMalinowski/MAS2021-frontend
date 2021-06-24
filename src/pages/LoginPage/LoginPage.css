@@ -11,17 +11,14 @@
     padding: 3px;
 }
 
-.LoginPage button {
-    background-color: rgba(31, 31, 31, 0.65);
-}
-
-.LoginPage button:hover {
-    background-color: rgba(31, 31, 31, 0.91);
-}
-
 .LoginPage-error {
     margin-top: 10px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-size: 15px;
     color: red;
+}
+
+.LoginPage-registration-button {
+    margin-top: 20px;
+    text-decoration: none;
 }

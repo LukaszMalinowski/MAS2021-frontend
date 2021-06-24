@@ -1,6 +1,6 @@
 import {Component} from "react";
 import AuthService from "../../services/auth-service"
-import {Redirect} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import {Button, TextField} from "@material-ui/core";
 import './LoginPage.css';
 
@@ -88,11 +88,16 @@ class LoginPage extends Component {
                     <div className="row">
                         <Button
                             variant="contained"
-                            className="LoginPage-submit col"
+                            className="col"
                             color="primary"
                             onClick={this.handleLogin}>
-                            Submit
+                            Login
                         </Button>
+                        <NavLink to="/registration" className="LoginPage-registration-button">
+                            <Button>
+                                Register
+                            </Button>
+                        </NavLink>
                     </div>
                 </form>
             </div>

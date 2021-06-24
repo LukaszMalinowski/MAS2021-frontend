@@ -1,0 +1,12 @@
+.Registration-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #d7d7d7;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+    border-radius: 3%;
+}
