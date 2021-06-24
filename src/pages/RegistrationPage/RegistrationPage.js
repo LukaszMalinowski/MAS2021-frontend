@@ -12,7 +12,8 @@ class RegistrationPage extends Component {
 
         this.state = {
             registered: false,
-            error: false
+            error: false,
+            errorMessages: []
         }
     }
 
@@ -40,11 +41,9 @@ class RegistrationPage extends Component {
             }
         }
 
-        console.log(user)
-
         AuthService.register(user)
             .then(() => this.setState({registered: true}))
-            .catch(() => this.setState({error: true}))
+            .catch(err => this.setState({error: true, errorMessages: err.response.data.errors}));
     }
 
 
@@ -65,7 +64,7 @@ class RegistrationPage extends Component {
 
                 </Container>
 
-                <Typography variant="h6" >Personal information</Typography>
+                <Typography variant="h6">Personal information</Typography>
                 <Container style={{marginTop: "20px", marginBottom: "20px"}}>
                     <Row>
                         <Col>
@@ -86,7 +85,7 @@ class RegistrationPage extends Component {
                     </Row>
                 </Container>
 
-                <Typography variant="h6" >Address</Typography>
+                <Typography variant="h6">Address</Typography>
                 <Container style={{marginTop: "20px", marginBottom: "20px"}}>
                     <Row>
                         <Col>
@@ -116,9 +115,10 @@ class RegistrationPage extends Component {
                     </Row>
                 </Container>
                 <div style={{textAlign: "center"}}>
-                    {this.state.error &&
-                    <Typography variant="h6" color="secondary">An error occurred. Try again</Typography>}
-                    <Button style={{textAlign: "center", margin: "auto", width: "300px"}} variant="primary" type="submit">
+                    {this.state.error && this.state.errorMessages.map(message =>
+                        <Typography key={message.defaultMessage} variant="h6" color="secondary">{message.defaultMessage}</Typography>)}
+                    <Button style={{textAlign: "center", margin: "auto", width: "300px"}} variant="primary"
+                            type="submit">
                         Register
                     </Button>
                 </div>
