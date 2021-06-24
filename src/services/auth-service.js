@@ -21,14 +21,8 @@ class AuthService {
     }
 
     register(user) {
-        return axios.post(`${URL_BASE}auth/register`, {
-            password: user.password,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            phoneNumber: user.phoneNumber,
-            address: user.address
-        })
+        return axios.post(`${URL_BASE}auth/register`, user
+        )
             .then(response => {
                 if (response.data.accessToken) {
                     localStorage.setItem("user", JSON.stringify(response.data));

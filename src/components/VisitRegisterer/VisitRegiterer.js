@@ -54,21 +54,27 @@ class VisitRegisterer extends Component {
             .catch(() => this.setState({error: true}))
     }
 
-    componentDidMount() {
-        CarsService.fetchUserCars(this.state.currentUser.id)
-            .then(response => this.setState(
-                {
-                    cars: response,
-                    carId: response[0].id
-                }));
+    async componentDidMount() {
+        const cars = await CarsService.fetchUserCars(this.state.currentUser.id);
 
-        GarageService.fetchAllGarages()
-            .then(response => this.setState({
-                garages: response,
-                garageId: response[0].id,
-                dates: response[0].availableDates,
-                visitDate: response[0].availableDates[0]
-            }))
+        if (cars.length !== 0) {
+            this.setState(
+                {
+                    cars: cars,
+                    carId: cars[0].id
+                })
+        }
+
+        const garages = await GarageService.fetchAllGarages();
+
+        if (garages.length !== 0) {
+            this.setState({
+                garages: garages,
+                garageId: garages[0].id,
+                dates: garages[0].availableDates,
+                visitDate: garages[0].availableDates[0]
+            })
+        }
 
     }
 
@@ -94,7 +100,7 @@ class VisitRegisterer extends Component {
     render() {
         const {cars, garages, dates, added, error} = this.state;
 
-        if(added) {
+        if (added) {
             return <Typography className="VisitRegisterer-Registered" variant="h3">Visit registered!</Typography>
         }
 
@@ -109,22 +115,25 @@ class VisitRegisterer extends Component {
                 <Form.Group>
                     <FormLabel>Service</FormLabel>
                     <Form.Control as="select" id="garageId" onChange={this.fetchDates}>
-                        {garages.map(garage => <option value={garage.id}  key={garage.id}>{garage.name}</option>)}
+                        {garages.map(garage => <option value={garage.id} key={garage.id}>{garage.name}</option>)}
                     </Form.Control>
                 </Form.Group>
                 <Form.Group>
                     <FormLabel>Date of visit</FormLabel>
                     <Form.Control as="select" id="visitDate" onChange={this.handleChange}>
-                        {dates.map(date => <option value={date} onChange={this.handleChange} key={date}>{new Date(date).toLocaleString()}</option>)}
+                        {dates.map(date => <option value={date} onChange={this.handleChange}
+                                                   key={date}>{new Date(date).toLocaleString()}</option>)}
                     </Form.Control>
                 </Form.Group>
                 <Form.Group>
                     <FormLabel>Invoice</FormLabel>
-                    <Checkbox id="invoiceNeeded" value="invoiceNeeded" color="primary" onChange={this.handleCheckboxChange}/>
+                    <Checkbox id="invoiceNeeded" value="invoiceNeeded" color="primary"
+                              onChange={this.handleCheckboxChange}/>
                 </Form.Group>
                 <Form.Group className="VisitRegisterer-Checkbox">
                     <FormLabel>Door to door</FormLabel>
-                    <Checkbox id="isDoorToDoor" value="isDoorToDoor" color="primary" onChange={this.handleCheckboxChange}/>
+                    <Checkbox id="isDoorToDoor" value="isDoorToDoor" color="primary"
+                              onChange={this.handleCheckboxChange}/>
                 </Form.Group>
                 <Form.Group>
                     <FormLabel>Description</FormLabel>
