@@ -116,7 +116,8 @@ class RegistrationPage extends Component {
                 </Container>
                 <div style={{textAlign: "center"}}>
                     {this.state.error && this.state.errorMessages.map(message =>
-                        <Typography key={message.defaultMessage} variant="h6" color="secondary">{message.defaultMessage}</Typography>)}
+                        <Typography key={message.defaultMessage} variant="h6"
+                                    color="secondary">{message.defaultMessage}</Typography>)}
                     <Button style={{textAlign: "center", margin: "auto", width: "300px"}} variant="primary"
                             type="submit">
                         Register
