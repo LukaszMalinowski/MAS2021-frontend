@@ -49,42 +49,44 @@ class RegistrationPage extends Component {
 
 
     render() {
-        if(this.state.registered) {
+        if (this.state.registered) {
             return <Redirect to="/main"/>
         }
 
         return (
             <Form className="Registration-page" onSubmit={this.handleSubmit}>
-                <Container style={{marginTop: "20px", marginBottom: "20px"}}>
-                    <Row>
-                        <Col>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control id="email" type="email" placeholder="Enter email" onChange={this.handleChange}/>
-                        </Col>
-                        <Col>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control id="password" type="password" placeholder="Password" onChange={this.handleChange}/>
-                        </Col>
-                    </Row>
+                <Container style={{marginTop: "20px", marginBottom: "20px", width: "30%"}}>
+
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control id="email" type="email" placeholder="Enter email" onChange={this.handleChange}/>
+
+                    <Form.Label style={{marginTop: "20px"}}>Password</Form.Label>
+                    <Form.Control id="password" type="password" placeholder="Password" onChange={this.handleChange}/>
+
                 </Container>
 
+                <Typography variant="h6" >Personal information</Typography>
                 <Container style={{marginTop: "20px", marginBottom: "20px"}}>
                     <Row>
                         <Col>
                             <Form.Label>First name</Form.Label>
-                            <Form.Control id="firstName" type="text" placeholder="First name" onChange={this.handleChange}/>
+                            <Form.Control id="firstName" type="text" placeholder="First name"
+                                          onChange={this.handleChange}/>
                         </Col>
                         <Col>
                             <Form.Label>Last name</Form.Label>
-                            <Form.Control id="lastName" type="text" placeholder="Last name" onChange={this.handleChange}/>
+                            <Form.Control id="lastName" type="text" placeholder="Last name"
+                                          onChange={this.handleChange}/>
                         </Col>
                         <Col>
                             <Form.Label>Phone number</Form.Label>
-                            <Form.Control id="phoneNumber" type="text" placeholder="Phone number" onChange={this.handleChange}/>
+                            <Form.Control id="phoneNumber" type="text" placeholder="Phone number"
+                                          onChange={this.handleChange}/>
                         </Col>
                     </Row>
                 </Container>
 
+                <Typography variant="h6" >Address</Typography>
                 <Container style={{marginTop: "20px", marginBottom: "20px"}}>
                     <Row>
                         <Col>
@@ -114,9 +116,10 @@ class RegistrationPage extends Component {
                     </Row>
                 </Container>
                 <div style={{textAlign: "center"}}>
-                    {this.state.error && <Typography variant="h6" color="secondary">An error occurred. Try again</Typography>}
-                    <Button style={{textAlign: "center", margin: "auto"}} variant="primary" type="submit">
-                        Submit
+                    {this.state.error &&
+                    <Typography variant="h6" color="secondary">An error occurred. Try again</Typography>}
+                    <Button style={{textAlign: "center", margin: "auto", width: "300px"}} variant="primary" type="submit">
+                        Register
                     </Button>
                 </div>
             </Form>

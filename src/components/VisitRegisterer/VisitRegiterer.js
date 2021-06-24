@@ -38,6 +38,11 @@ class VisitRegisterer extends Component {
 
         const state = this.state;
 
+        if (state.showNoAvailableDates) {
+            this.setState({error: true, errorMessage: "Selected date is not available."});
+            return;
+        }
+
         const registerRequest = {
             clientId: state.currentUser.id,
             carId: state.carId,
@@ -54,7 +59,12 @@ class VisitRegisterer extends Component {
     registerVisit = registerRequest => {
         RepairService.registerVisit(registerRequest)
             .then(() => this.setState({added: true}))
-            .catch(() => this.setState({error: true}))
+            .catch(err =>
+                this.setState({
+                    error: true,
+                    errorMessage: err.response.data
+                })
+            );
     }
 
     async componentDidMount() {
@@ -102,11 +112,12 @@ class VisitRegisterer extends Component {
 
         GarageService.fetchAllGarageDates(garageId)
             .then(response => {
-                if(response.length === 0) {
+                if (response.length === 0) {
                     this.setState({showNoAvailableDates: true})
                 } else {
                     this.setState({
                         dates: response,
+                        visitDate: response[0],
                         showNoAvailableDates: false
                     })
                 }
@@ -122,7 +133,7 @@ class VisitRegisterer extends Component {
     }
 
     render() {
-        const {cars, garages, dates, added, error, showAddCars, showNoAvailableDates} = this.state;
+        const {cars, garages, dates, added, error, showAddCars, showNoAvailableDates, errorMessage} = this.state;
 
         if (added) {
             return <Typography className="VisitRegisterer-Registered" variant="h3">Visit registered!</Typography>
@@ -175,7 +186,7 @@ class VisitRegisterer extends Component {
                     <Form.Control id="description" as="textarea" onChange={this.handleChange}/>
                 </Form.Group>
                 <Button style={{marginTop: '20px'}} variant="primary" type="submit">Register visit</Button>
-                {error && <Typography variant="h6" color="secondary">An error occurred. Try again</Typography>}
+                {error && <Typography variant="h6" color="secondary">{errorMessage}</Typography>}
             </Form>
         );
     }
