@@ -28,7 +28,8 @@ class VisitRegisterer extends Component {
             description: null,
             registered: false,
             error: false,
-            showAddCars: false
+            showAddCars: false,
+            showNoAvailableDates: false
         }
     }
 
@@ -74,12 +75,22 @@ class VisitRegisterer extends Component {
         const garages = await GarageService.fetchAllGarages();
 
         if (garages.length !== 0) {
-            this.setState({
-                garages: garages,
-                garageId: garages[0].id,
-                dates: garages[0].availableDates,
-                visitDate: garages[0].availableDates[0]
-            })
+            const availableDates = garages[0].availableDates;
+
+            if (availableDates !== null && availableDates.length !== 0) {
+                this.setState({
+                    garages: garages,
+                    garageId: garages[0].id,
+                    dates: availableDates,
+                    visitDate: availableDates[0]
+                })
+            } else {
+                this.setState({
+                    garages: garages,
+                    garageId: garages[0].id,
+                    showNoAvailableDates: true
+                })
+            }
         }
 
     }
@@ -90,9 +101,16 @@ class VisitRegisterer extends Component {
         const garageId = evt.target.value;
 
         GarageService.fetchAllGarageDates(garageId)
-            .then(response => this.setState({
-                dates: response
-            }));
+            .then(response => {
+                if(response.length === 0) {
+                    this.setState({showNoAvailableDates: true})
+                } else {
+                    this.setState({
+                        dates: response,
+                        showNoAvailableDates: false
+                    })
+                }
+            });
     }
 
     handleChange = evt => {
@@ -104,7 +122,7 @@ class VisitRegisterer extends Component {
     }
 
     render() {
-        const {cars, garages, dates, added, error, showAddCars} = this.state;
+        const {cars, garages, dates, added, error, showAddCars, showNoAvailableDates} = this.state;
 
         if (added) {
             return <Typography className="VisitRegisterer-Registered" variant="h3">Visit registered!</Typography>
@@ -115,7 +133,7 @@ class VisitRegisterer extends Component {
 
                 {showAddCars ? (<NavLink to="/main/addCar"
                                          style={{textDecoration: "none"}}>
-                        <Button>Add car</Button>
+                        <Button style={{marginBottom: "20px"}}>You have to add car firsts</Button>
                     </NavLink>) :
                     (<Form.Group>
                         <FormLabel>Car</FormLabel>
@@ -130,13 +148,18 @@ class VisitRegisterer extends Component {
                         {garages.map(garage => <option value={garage.id} key={garage.id}>{garage.name}</option>)}
                     </Form.Control>
                 </Form.Group>
-                <Form.Group>
-                    <FormLabel>Date of visit</FormLabel>
-                    <Form.Control as="select" id="visitDate" onChange={this.handleChange}>
-                        {dates.map(date => <option value={date} onChange={this.handleChange}
-                                                   key={date}>{new Date(date).toLocaleString()}</option>)}
-                    </Form.Control>
-                </Form.Group>
+                {showNoAvailableDates ?
+                    (<Typography variant="h6" color="secondary">
+                        There are no available dates in this service
+                    </Typography>)
+                    : (<Form.Group>
+                        <FormLabel>Date of visit</FormLabel>
+                        <Form.Control as="select" id="visitDate" onChange={this.handleChange}>
+                            {dates.map(date => <option value={date} onChange={this.handleChange}
+                                                       key={date}>{new Date(date).toLocaleString()}</option>)}
+                        </Form.Control>
+                    </Form.Group>)}
+
                 <Form.Group>
                     <FormLabel>Invoice</FormLabel>
                     <Checkbox id="invoiceNeeded" value="invoiceNeeded" color="primary"
