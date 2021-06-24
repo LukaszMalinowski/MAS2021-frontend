@@ -6,6 +6,7 @@ import GarageService from "../../services/garage-service";
 import RepairService from "../../services/repair-service"
 import "./VisitRegisterer.css"
 import {Checkbox, Typography} from "@material-ui/core";
+import {NavLink} from "react-router-dom";
 
 class VisitRegisterer extends Component {
 
@@ -26,7 +27,8 @@ class VisitRegisterer extends Component {
             isDoorToDoor: false,
             description: null,
             registered: false,
-            error: false
+            error: false,
+            showAddCars: false
         }
     }
 
@@ -63,6 +65,10 @@ class VisitRegisterer extends Component {
                     cars: cars,
                     carId: cars[0].id
                 })
+        } else {
+            this.setState({
+                showAddCars: true
+            })
         }
 
         const garages = await GarageService.fetchAllGarages();
@@ -98,7 +104,7 @@ class VisitRegisterer extends Component {
     }
 
     render() {
-        const {cars, garages, dates, added, error} = this.state;
+        const {cars, garages, dates, added, error, showAddCars} = this.state;
 
         if (added) {
             return <Typography className="VisitRegisterer-Registered" variant="h3">Visit registered!</Typography>
@@ -106,12 +112,18 @@ class VisitRegisterer extends Component {
 
         return (
             <Form className="VisitRegisterer" onSubmit={this.handleSubmit}>
-                <Form.Group>
-                    <FormLabel>Car</FormLabel>
-                    <Form.Control as="select" id="carId" onChange={this.handleChange}>
-                        {cars.map(car => <option value={car.id} key={car.id}>{car.mark} {car.model}</option>)}
-                    </Form.Control>
-                </Form.Group>
+
+                {showAddCars ? (<NavLink to="/main/addCar"
+                                         style={{textDecoration: "none"}}>
+                        <Button>Add car</Button>
+                    </NavLink>) :
+                    (<Form.Group>
+                        <FormLabel>Car</FormLabel>
+                        <Form.Control as="select" id="carId" onChange={this.handleChange}>
+                            {cars.map(car => <option value={car.id} key={car.id}>{car.mark} {car.model}</option>)}
+                        </Form.Control>
+                    </Form.Group>)}
+
                 <Form.Group>
                     <FormLabel>Service</FormLabel>
                     <Form.Control as="select" id="garageId" onChange={this.fetchDates}>
