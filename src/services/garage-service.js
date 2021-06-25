@@ -25,7 +25,15 @@ class GarageService {
             {
                 headers: getAuthHeader()
             })
-            .then(response => response.data)
+            .then(response => response.data);
+    }
+
+    fetchAllGarageMechanics(garageId) {
+        return axios.get(`${BASE_URL}garages/${garageId}/mechanics`,
+            {
+                headers: getAuthHeader()
+            })
+            .then(response => response.data);
     }
 }
 

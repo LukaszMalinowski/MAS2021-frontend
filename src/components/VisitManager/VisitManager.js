@@ -3,6 +3,7 @@ import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import AuthService from "../../services/auth-service";
 import GarageService from "../../services/garage-service";
 import RepairService from "../../services/repair-service";
+import EditRepairDialog from "../EditRepairDialog/EditRepairDialog";
 
 class VisitManager extends Component {
 
@@ -64,8 +65,7 @@ class VisitManager extends Component {
                                             onClick={() => this.completeRepair(repair)}>Complete repair</Button>
                                 </TableCell>
                                 <TableCell>
-                                    <Button color="primary"
-                                            variant="contained">Edit</Button>
+                                    <EditRepairDialog repair={repair}/>
                                 </TableCell>
                             </TableRow>
                         ))}
