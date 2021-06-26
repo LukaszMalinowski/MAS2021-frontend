@@ -35,6 +35,17 @@ class GarageService {
             })
             .then(response => response.data);
     }
+
+    addGarage(garageId, date) {
+        return axios.post(`${BASE_URL}garages/${garageId}/dates`, JSON.stringify(date),
+            {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`,
+                    'Content-Type': "application/json"
+                }
+            })
+            .then(response => response.status);
+    }
 }
 
 export default new GarageService();

@@ -9,6 +9,7 @@ import VisitRegisterer from "../../components/VisitRegisterer/VisitRegiterer";
 import VisitManager from "../../components/VisitManager/VisitManager";
 import GarageList from "../../components/GarageList/GarageList";
 import RepairHistoryList from "../../components/RepairHistoryList/RepairHistoryList";
+import GarageManager from "../../components/GarageManager/GarageManager";
 
 class MainPage extends Component {
 
@@ -44,6 +45,7 @@ class MainPage extends Component {
                 <Route path="/main/allRepairs" component={VisitManager}/>
                 <Route path="/main/availableGarages" component={GarageList}/>
                 <Route path="/main/repairHistory" component={RepairHistoryList}/>
+                <Route path="/main/manageGarage" component={GarageManager}/>
             </div>
         )
     }
