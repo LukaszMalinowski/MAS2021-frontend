@@ -4,6 +4,9 @@ import AuthService from "../../services/auth-service";
 import GarageService from "../../services/garage-service";
 import RepairService from "../../services/repair-service";
 import EditRepairDialog from "../EditRepairDialog/EditRepairDialog";
+import TimelapseIcon from "@material-ui/icons/Timelapse";
+import SettingsIcon from "@material-ui/icons/Settings";
+import DoneIcon from "@material-ui/icons/Done";
 
 class VisitManager extends Component {
 
@@ -16,6 +19,25 @@ class VisitManager extends Component {
             currentUser: user,
             repairs: []
         }
+    }
+
+    getRepairStatus = status => {
+        let statusHtml;
+
+        switch (status) {
+            case 'REGISTERED':
+                statusHtml = <div><TimelapseIcon />Registered</div>
+                break;
+            case 'STARTED':
+                statusHtml = <div><SettingsIcon />Started</div>
+                break;
+            case 'COMPLETED':
+                statusHtml = <div><DoneIcon />Completed</div>
+                break;
+            default:
+                statusHtml = <div>Status unknown. Contact service owner</div>
+        }
+        return statusHtml;
     }
 
     completeRepair = repair => {
@@ -67,7 +89,7 @@ class VisitManager extends Component {
                                 <TableCell>{repair.car.user.firstName} {repair.car.user.lastName}</TableCell>
                                 <TableCell>{repair.car.mark} {repair.car.model}</TableCell>
                                 <TableCell>{new Date(repair.receiveDateTime).toLocaleString()}</TableCell>
-                                <TableCell>{repair.status}</TableCell>
+                                <TableCell>{this.getRepairStatus(repair.status)}</TableCell>
                                 <TableCell>
                                     <Button color="primary"
                                             variant="contained"
