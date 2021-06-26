@@ -149,7 +149,7 @@ class VisitRegisterer extends Component {
                     (<Form.Group>
                         <FormLabel>Car</FormLabel>
                         <Form.Control as="select" id="carId" onChange={this.handleChange}>
-                            {cars.map(car => <option value={car.id} key={car.id}>{car.mark} {car.model}</option>)}
+                            {cars.map(car => <option value={car.id} key={car.id}>{car.brand} {car.model}</option>)}
                         </Form.Control>
                     </Form.Group>)}
 

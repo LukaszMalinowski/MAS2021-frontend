@@ -63,7 +63,7 @@ class RepairHistoryList extends Component {
                         {repairs.map(repair => (
                             <TableRow key={repair.repairId}>
                                 <TableCell>
-                                    {repair.car.mark} {repair.car.model}
+                                    {repair.car.brand} {repair.car.model}
                                 </TableCell>
                                 <TableCell>
                                     {new Date(repair.receiveDateTime).toLocaleString()}

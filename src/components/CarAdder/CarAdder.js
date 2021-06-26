@@ -28,7 +28,7 @@ class CarAdder extends Component {
             registrationNumber: state.registration,
             vinNumber: state.vin,
             productionYear: parseInt(state.productionYear),
-            mark: state.mark,
+            brand: state.brand,
             model: state.model,
             netEnginePower: parseFloat(state.power)
         };
@@ -60,7 +60,7 @@ class CarAdder extends Component {
                 </Form.Group>
                 <Form.Group>
                     <FormLabel>Brand</FormLabel>
-                    <Form.Control id="mark" onChange={this.handleChange} placeholder="Enter brand"/>
+                    <Form.Control id="brand" onChange={this.handleChange} placeholder="Enter brand"/>
                 </Form.Group>
                 <Form.Group>
                     <FormLabel>Production year</FormLabel>

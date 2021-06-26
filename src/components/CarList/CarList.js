@@ -41,7 +41,7 @@ class CarList extends Component {
                     <TableBody>
                         {cars.map(car => (
                             <TableRow key={car.id}>
-                                <TableCell>{car.mark}</TableCell>
+                                <TableCell>{car.brand}</TableCell>
                                 <TableCell>{car.model}</TableCell>
                                 <TableCell>{car.productionYear}</TableCell>
                                 <TableCell>{car.registrationNumber}</TableCell>

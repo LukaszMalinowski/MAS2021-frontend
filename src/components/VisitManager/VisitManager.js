@@ -87,7 +87,7 @@ class VisitManager extends Component {
                             <TableRow key={repair.repairId}>
                                 <TableCell>{repair.repairId}</TableCell>
                                 <TableCell>{repair.car.user.firstName} {repair.car.user.lastName}</TableCell>
-                                <TableCell>{repair.car.mark} {repair.car.model}</TableCell>
+                                <TableCell>{repair.car.brand} {repair.car.model}</TableCell>
                                 <TableCell>{new Date(repair.receiveDateTime).toLocaleString()}</TableCell>
                                 <TableCell>{this.getRepairStatus(repair.status)}</TableCell>
                                 <TableCell>
