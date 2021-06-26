@@ -140,7 +140,7 @@ class EditRepairDialog extends Component {
                         <Typography variant="h5">Parts:</Typography>
                         <ul>
                             {parts.map(part => <Typography key={part.id} variant="h6">
-                                {part.name} -  {part.producer}: {part.price} zł
+                                {part.name} - {part.producer}: {part.price} zł
                             </Typography>)}
                         </ul>
                         <Form onSubmit={this.handleAddPart}>
@@ -149,13 +149,13 @@ class EditRepairDialog extends Component {
                             </FormLabel>
                             <Row>
                                 <Col>
-                                    <FormControl placeholder="Name" id="partName" onChange={this.handleChange} />
+                                    <FormControl placeholder="Name" id="partName" onChange={this.handleChange}/>
                                 </Col>
                                 <Col>
-                                    <FormControl placeholder="Producer" id="partProducer" onChange={this.handleChange} />
+                                    <FormControl placeholder="Producer" id="partProducer" onChange={this.handleChange}/>
                                 </Col>
                                 <Col>
-                                    <FormControl placeholder="Price" id="partPrice" onChange={this.handleChange} />
+                                    <FormControl placeholder="Price" id="partPrice" onChange={this.handleChange}/>
                                 </Col>
                                 <Col>
                                     <Button type="submit" variant="outlined" color="primary">Add part</Button>

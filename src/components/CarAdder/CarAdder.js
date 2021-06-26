@@ -48,7 +48,7 @@ class CarAdder extends Component {
     }
 
     render() {
-        if(this.state.added) {
+        if (this.state.added) {
             return <Typography className="CarAdder-Added" variant="h3">Car added</Typography>
         }
 
@@ -66,13 +66,15 @@ class CarAdder extends Component {
                     <FormLabel>Production year</FormLabel>
                     <Form.Control id="productionYear" onChange={this.handleChange} placeholder="Enter production year"/>
                 </Form.Group>
-                <Form.Group >
+                <Form.Group>
                     <FormLabel>Vin</FormLabel>
                     <Form.Control id="vin" onChange={this.handleChange} placeholder="Enter vin number"/>
                 </Form.Group>
-                <Form.Group >
+                <Form.Group>
                     <FormLabel>Registration number</FormLabel>
-                    <Form.Control id="registration" onChange={this.handleChange} placeholder="Enter registration number"/>
+                    <Form.Control id="registration"
+                                  onChange={this.handleChange}
+                                  placeholder="Enter registration number"/>
                 </Form.Group>
                 <Form.Group>
                     <FormLabel>Engine power</FormLabel>

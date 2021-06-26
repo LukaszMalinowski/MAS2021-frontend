@@ -26,13 +26,13 @@ class VisitManager extends Component {
 
         switch (status) {
             case 'REGISTERED':
-                statusHtml = <div><TimelapseIcon />Registered</div>
+                statusHtml = <div><TimelapseIcon/>Registered</div>
                 break;
             case 'STARTED':
-                statusHtml = <div><SettingsIcon />Started</div>
+                statusHtml = <div><SettingsIcon/>Started</div>
                 break;
             case 'COMPLETED':
-                statusHtml = <div><DoneIcon />Completed</div>
+                statusHtml = <div><DoneIcon/>Completed</div>
                 break;
             default:
                 statusHtml = <div>Status unknown. Contact service owner</div>
