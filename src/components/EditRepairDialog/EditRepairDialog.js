@@ -12,8 +12,6 @@ class EditRepairDialog extends Component {
 
         const user = AuthService.getCurrentUser();
 
-        console.log(this.props.repair.parts)
-
         this.state = {
             open: false,
             currentUser: user,
@@ -24,6 +22,9 @@ class EditRepairDialog extends Component {
             showNoMechanics: false,
             notes: null,
             parts: props.repair.parts,
+            partName: null,
+            partProducer: null,
+            partPrice: null,
         }
     }
 
@@ -72,6 +73,22 @@ class EditRepairDialog extends Component {
             .then(() => this.props.changeStatus(this.props.repair.repairId))
             .then(() => this.setState({repairMechanics: [...this.state.repairMechanics, newRepairMechanic]}));
 
+    }
+
+    handleAddPart = evt => {
+        evt.preventDefault();
+
+        const {partName, partPrice, partProducer} = this.state;
+
+        const part = {
+            name: partName,
+            producer: partProducer,
+            price: partPrice
+        };
+
+        RepairService.addPart(this.props.repair.repairId, part)
+            .then(() => this.props.changeStatus(this.props.repair.repairId))
+            .then(() => this.setState({parts: [...this.state.parts, part]}));
     }
 
     handleChange = evt => {
@@ -126,13 +143,22 @@ class EditRepairDialog extends Component {
                                 {part.name} -  {part.producer}: {part.price} zł
                             </Typography>)}
                         </ul>
-                        <Form>
+                        <Form onSubmit={this.handleAddPart}>
                             <FormLabel>
                                 Add part
                             </FormLabel>
                             <Row>
                                 <Col>
-
+                                    <FormControl placeholder="Name" id="partName" onChange={this.handleChange} />
+                                </Col>
+                                <Col>
+                                    <FormControl placeholder="Producer" id="partProducer" onChange={this.handleChange} />
+                                </Col>
+                                <Col>
+                                    <FormControl placeholder="Price" id="partPrice" onChange={this.handleChange} />
+                                </Col>
+                                <Col>
+                                    <Button type="submit" variant="outlined" color="primary">Add part</Button>
                                 </Col>
                             </Row>
                         </Form>

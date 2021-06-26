@@ -59,8 +59,8 @@ class CarAdder extends Component {
                     <Form.Control id="model" onChange={this.handleChange} placeholder="Enter model"/>
                 </Form.Group>
                 <Form.Group>
-                    <FormLabel>Mark</FormLabel>
-                    <Form.Control id="mark" onChange={this.handleChange} placeholder="Enter mark"/>
+                    <FormLabel>Brand</FormLabel>
+                    <Form.Control id="mark" onChange={this.handleChange} placeholder="Enter brand"/>
                 </Form.Group>
                 <Form.Group>
                     <FormLabel>Production year</FormLabel>

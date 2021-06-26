@@ -32,7 +32,7 @@ class CarList extends Component {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Mark</TableCell>
+                            <TableCell>Brand</TableCell>
                             <TableCell>Model</TableCell>
                             <TableCell>Production year</TableCell>
                             <TableCell>Registration number</TableCell>

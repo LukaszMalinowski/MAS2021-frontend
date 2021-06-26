@@ -35,6 +35,14 @@ class RepairService {
             })
             .then(response => response.status);
     }
+
+    addPart(repairId, part) {
+        return axios.post(`${BASE_URL}repairs/${repairId}/parts`, part,
+            {
+                headers: getAuthHeader()
+            })
+            .then(response => response.status);
+    }
 }
 
 export default new RepairService();
