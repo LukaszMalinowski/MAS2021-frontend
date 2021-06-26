@@ -29,6 +29,15 @@ class VisitManager extends Component {
             .catch(err => console.log(err));
     }
 
+    changeStatus = repairId => {
+        let repairs = this.state.repairs;
+
+        repairs.filter(repair => repair.repairId === parseInt(repairId))
+            .forEach(repair => repair.status = "STARTED");
+
+        this.setState({repairs: repairs});
+    }
+
     componentDidMount() {
         GarageService.fetchAllGarageRepairs(this.state.currentUser.garageId)
             .then(response => this.setState({repairs: response}));
@@ -65,7 +74,7 @@ class VisitManager extends Component {
                                             onClick={() => this.completeRepair(repair)}>Complete repair</Button>
                                 </TableCell>
                                 <TableCell>
-                                    <EditRepairDialog repair={repair}/>
+                                    <EditRepairDialog repair={repair} changeStatus={this.changeStatus}/>
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import URL_BASE from "../constants/URL_BASE";
+import BASE_URL from "../constants/URL_BASE";
 import getAuthHeader from "./auth-header";
 
 class RepairService {
@@ -25,6 +26,14 @@ class RepairService {
             headers: getAuthHeader()
         })
             .then(response => response.data);
+    }
+
+    addMechanic(repairId, mechanicRepair) {
+        return axios.post(`${BASE_URL}repairs/${repairId}/mechanics`, mechanicRepair,
+            {
+                headers: getAuthHeader()
+            })
+            .then(response => response.status);
     }
 }
 

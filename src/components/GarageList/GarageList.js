@@ -44,18 +44,16 @@ class GarageList extends Component {
                                     <TableCell className="GarageList">
                                         <p>{garage.address.street} {garage.address.houseNumber} {garage.address.apartmentNumber}</p>
                                         <p>{garage.address.city} {garage.address.zipcode}</p>
-                                </TableCell>
+                                    </TableCell>
                                 </TableRow>
-                                ))}
-                                </TableBody>
-                                </Table>
-                                </TableContainer>
-                                </div>
-                                );
-                            }
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
+        );
+    }
 
-                            }
+}
 
-    export
-    default
-    GarageList;
+export default GarageList;
