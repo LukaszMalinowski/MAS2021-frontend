@@ -45,7 +45,7 @@ class GarageManager extends Component {
 
         return (
             <div className="GarageManager">
-                <ul>
+                <ul style={{marginRight: "30px"}}>
                     {dates.map(date => <li key={date}>
                         <Typography variant="h6">{new Date(date).toLocaleString()}</Typography>
                     </li>)}
